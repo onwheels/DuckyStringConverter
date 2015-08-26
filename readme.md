@@ -1,3 +1,6 @@
+
+Original thread : https://forums.hak5.org/index.php?/topic/36501-tool-ducky-string-converter/
+
 ```
   _____   _____  _____ 
  |  __ \ / ____|/ ____|
