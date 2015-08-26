@@ -1,4 +1,4 @@
-<!-- language: lang-none -->
+<pre>
   _____   _____  _____ 
  |  __ \ / ____|/ ____|
  | |  | | (___ | |     
@@ -18,3 +18,5 @@ List of availables commands
 -a (optional) : Append command after each line [example : enter,delay,escape,etc...]
 -i : Plain text file to convert
 -o (optional) : Output file
+
+</pre>
