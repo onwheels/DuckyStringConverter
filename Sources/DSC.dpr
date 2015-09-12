@@ -137,7 +137,12 @@ begin
   _paramAValue := Params[_aPresent + 1];
   // Get append parameter extra values (avoid spaces)
   for _aIndex := (_aPresent + 2) to Pred(Params.Count) do
-    _paramAValue := _paramAValue + ' ' + Params[_aIndex];
+  begin
+    if (Params[_aIndex][1] <> TOOL_PARAM_SEPARATOR) then
+      _paramAValue := _paramAValue + ' ' + Params[_aIndex]
+    else
+      break;
+  end;
   // Init variables
   _aLastIndex := 1;
   // Adding appends to result
@@ -191,7 +196,7 @@ begin
       begin
         // Parameter format is invalid
         Result := False;
-        Break;
+        break;
       end;
     end;
   end;
