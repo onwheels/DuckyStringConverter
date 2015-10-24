@@ -1,7 +1,7 @@
 [Settings]
 Syntax=1280
 CodeGen=512
-Optimizer=2
+Optimizer=0
 Dialect=2
 Parameters=
 DebuggerArguments=
