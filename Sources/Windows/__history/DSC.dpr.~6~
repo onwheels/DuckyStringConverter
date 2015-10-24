@@ -240,7 +240,7 @@ begin
     // Write commands after each lines
     for I := 0 to Pred(Appends.Count) do
       if (Length(Trim(Appends[I])) > 0) then
-        WriteLn(fNewFile, UpperCase(Appends[I]));
+        WriteLn(fNewFile, UpperCase(_A));
   end;
   // Closing files both reading/writing
   CloseFile(fFile);

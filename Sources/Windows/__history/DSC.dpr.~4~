@@ -207,6 +207,7 @@ procedure convertFile(fPath: String; Appends: TStringList; fOut: String;
 var
   fFile, fNewFile: TextFile;
   lBuffer: String;
+  _A: String;
   I: Integer;
 begin
   // Check if file exists
@@ -215,6 +216,10 @@ begin
   // Check if out file already exists
   if FileExists(fOut) then
     DeleteFile(fOut);
+  // Get appends as string
+  _A := Appends.Text;
+  // Delete last line of string (blank line)
+  _A := Copy(_A, 1, Length(_A) - 2);
   // Load files
   AssignFile(fFile, fPath);
   AssignFile(fNewFile, fOut);
@@ -238,9 +243,7 @@ begin
     // Write converted line
     WriteLn(fNewFile, TOOL_CONVERTION_STRING_DUCKY_COMMAND + ' ' + lBuffer);
     // Write commands after each lines
-    for I := 0 to Pred(Appends.Count) do
-      if (Length(Trim(Appends[I])) > 0) then
-        WriteLn(fNewFile, UpperCase(Appends[I]));
+    WriteLn(fNewFile, UpperCase(_A));
   end;
   // Closing files both reading/writing
   CloseFile(fFile);
