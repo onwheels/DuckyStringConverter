@@ -3,7 +3,7 @@ program DSC;
 {$APPTYPE CONSOLE}
 
 uses
-  Classes, SysUtils, Types;
+  Windows, Vcl.Graphics, Classes, SysUtils, Types;
 
 const
   TOOL_PARAM_SEPARATOR = '-';
@@ -17,7 +17,11 @@ var
 procedure displayHelp();
 begin
   WriteLn;
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_RED or FOREGROUND_INTENSITY);
   WriteLn('[USB Rubber Ducky Script - String Converter]');
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_RED or FOREGROUND_BLUE);
   WriteLn;
   WriteLn('List of availables commands');
   WriteLn;
@@ -39,36 +43,60 @@ var
 begin
   _path := ParamStr(0);
   WriteLn;
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED or
+    FOREGROUND_INTENSITY);
   WriteLn('[ERROR] Please check parameters and retry ! Type ' +
     StringReplace(ExtractFileName(_path), ExtractFileExt(_path), '',
     [rfReplaceAll]) + ' -h for more information.');
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_RED or FOREGROUND_BLUE);
 end;
 
 procedure displayRunAlert();
 begin
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED or
+    FOREGROUND_INTENSITY);
   WriteLn('Please run this tool in DOS , if you''re already in DOS please check your parameters, press ENTER to close this window.');
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_RED or FOREGROUND_BLUE);
 end;
 
 procedure displayConvertionAlert();
 begin
   WriteLn;
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED or
+    FOREGROUND_INTENSITY);
   WriteLn('[ERROR] The input file you entered is invalid !');
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_RED or FOREGROUND_BLUE);
 end;
 
 procedure displayConvertionError();
 begin
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED or
+    FOREGROUND_INTENSITY);
   WriteLn('[ERROR] Unable to convert the select file ! Press ENTER to close the program.');
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_RED or FOREGROUND_BLUE);
 end;
 
 procedure displayConvertionProgress();
 begin
   WriteLn;
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_RED or FOREGROUND_INTENSITY);
   WriteLn('[*] Please wait your file is being converted ....');
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_RED or FOREGROUND_BLUE);
 end;
 
 procedure displayConvertionSuccess();
 begin
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_INTENSITY);
   WriteLn('[SUCCESS] File has been converted into DUCKY STRING FORMAT ! Press ENTER to close the program.');
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN or
+    FOREGROUND_RED or FOREGROUND_BLUE);
 end;
 
 procedure displayHeader();
@@ -180,7 +208,7 @@ var
   fFile, fNewFile: TextFile;
   lBuffer: String;
   _A: String;
-  I:Integer;
+  I: Integer;
 begin
   // Check if file exists
   if NOT FileExists(fPath) then
@@ -210,7 +238,7 @@ begin
       WriteLn('[CONVERT] ' + TOOL_CONVERTION_STRING_DUCKY_COMMAND + ' '
         + lBuffer);
       for I := 0 to Pred(Appends.Count) do
-        WriteLn('[COMMAND] ' + UpperCase(Appends[I]));
+        WriteLn('[COMMAND] ' + UpperCase(Appends.Text));
     end;
     // Write converted line
     WriteLn(fNewFile, TOOL_CONVERTION_STRING_DUCKY_COMMAND + ' ' + lBuffer);

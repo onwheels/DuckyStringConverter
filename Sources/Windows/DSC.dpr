@@ -3,7 +3,7 @@ program DSC;
 {$APPTYPE CONSOLE}
 
 uses
-  Windows, Graphics, Classes, SysUtils, Types;
+  Windows, Vcl.Graphics, Classes, SysUtils, Types;
 
 const
   TOOL_PARAM_SEPARATOR = '-';
@@ -208,6 +208,7 @@ var
   fFile, fNewFile: TextFile;
   lBuffer: String;
   _A: String;
+  I: Integer;
 begin
   // Check if file exists
   if NOT FileExists(fPath) then
@@ -236,7 +237,8 @@ begin
     begin
       WriteLn('[CONVERT] ' + TOOL_CONVERTION_STRING_DUCKY_COMMAND + ' '
         + lBuffer);
-      WriteLn('[COMMAND] ' + UpperCase(Appends.Text));
+      for I := 0 to Pred(Appends.Count) do
+        WriteLn('[COMMAND] ' + UpperCase(Appends[I]));
     end;
     // Write converted line
     WriteLn(fNewFile, TOOL_CONVERTION_STRING_DUCKY_COMMAND + ' ' + lBuffer);
